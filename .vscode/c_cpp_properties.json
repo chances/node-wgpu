@@ -4,7 +4,9 @@
             "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/third_party/wgpu/ffi"
+                "${workspaceFolder}/third_party/wgpu/ffi",
+                "${workspaceFolder}/node_modules/node-addon-api/src",
+                "${workspaceFolder}/src"
             ],
             "defines": [],
             "macFrameworkPath": [

@@ -1,0 +1,14 @@
+include "napi_kit.h";
+include "wgpu.h";
+
+function helloMethod(env: napi_env, info: napi_callback_info): napi_value {
+  return null;
+}
+
+#[extern]
+function init(env: napi_env, exports: napi_value): napi_value {
+  var desc = napi_method_property_descriptor("hello", helloMethod);
+  var status = napi_define_properties(env, exports, 1, &desc);
+  if (status != napi_ok) { return null; }
+  return exports;
+}

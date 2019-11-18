@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "install": "cmake-js compile",
+    "gen-bindings": "npx ts-node scripts/gen.ts",
     "build": "cmake-js build",
     "clean": "rm -r build",
     "test": "tape"
@@ -28,7 +29,8 @@
   "devDependencies": {
     "@types/node": "^12.12.5",
     "cmake-js": "^6.0.0",
-    "node-addon-api": "^1.7.1"
+    "node-addon-api": "^1.7.1",
+    "ts-morph": "^4.3.2"
   },
   "dependencies": {
     "@webgpu/types": "0.0.17",

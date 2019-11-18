@@ -1,5 +1,10 @@
 {
     "cSpell.words": [
         "Napi"
-    ]
+    ],
+    "cmake.configureOnOpen": false,
+    "files.associations": {
+        ".envrc": "shellscript",
+        "node_api.h": "c"
+    }
 }
