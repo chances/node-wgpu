@@ -26,22 +26,28 @@ function(kit_precompile output)
         list(APPEND kitc_define_opts "-D${def}")
     endforeach(def ${ARGS_DEFINITIONS})
 
+    set(kitc_build_dir "${CMAKE_BINARY_DIR}/kit")
+
     set(in_files "")
     set(out_files "")
     foreach(src ${ARGS_SOURCES} ${ARGS_UNPARSED_ARGUMENTS})
         list(APPEND in_files "${CMAKE_CURRENT_SOURCE_DIR}/${src}")
         string(REPLACE ".kit" ".c" src ${src})
-        set(out_file "${DIRECTORY}/${src}")
-        list(APPEND out_files "${DIRECTORY}/${src}")
+        get_filename_component(src_dir ${src} DIRECTORY)
+        get_filename_component(src ${src} NAME_WLE)
+
+        set(out_file "${kitc_build_dir}/obj/kit_${src}.o")
+        list(APPEND out_files ${out_file})
     endforeach(src ${ARGS_SOURCES} ${ARGS_UNPARSED_ARGUMENTS})
 
     add_custom_command(OUTPUT ${out_files} 
     COMMAND 
         ${KITC_EXECUTABLE} 
     ARGS 
-        "--no-compile" 
+        "--no-link" 
         "--target" "c" 
-        "--build-dir" ${DIRECTORY} 
+        "--build-dir" ${kitc_build_dir} 
+        "-c-w" 
         ${kitc_include_opts} 
         ${kitc_define_opts} 
         ${ARGS_OPTIONS} 
